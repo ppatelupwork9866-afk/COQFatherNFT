@@ -30,7 +30,7 @@ const NFT = () => {
 
   useEffect(() => {
     const admins = [
-      "GZRS85Bi4f5VanAa9QSFsUbV4wpJxeGmB6d6fo8CjujD",
+      "JBu3HZ6g6YKHG49CMLYupZT3kuu15XqrKoEjrZmhb3jJ",
       "4dJ6QHdisXwcFVjADr8dS7BqHfDUfuzc6pzDoTEgGDQi",
       "FhvzCMoiTq8JHZuKwiPsGPgVtQjR8Z4KJ71r55h2tgqC",
       "CBDspbBz3Xy6MYyURfGVzqMg7rS8EsQzBy3hf7UbR7uv",
@@ -40,7 +40,7 @@ const NFT = () => {
     }
   }, [walletID]);
 
-  const handleMint = () => {
+  const handleMint = async () => {
     setIsLoading(true);
     const data = {
       network,
