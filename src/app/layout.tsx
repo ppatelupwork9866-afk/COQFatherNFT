@@ -4,8 +4,8 @@ import dynamic from "next/dynamic";
 import SiderLoader from "@/components/layout/Sider/loading";
 import { ToastContainer } from "react-toastify";
 export const metadata: Metadata = {
-  title: "Puss",
-  description: "Pussin Boots NFT Marketplace",
+  title: "CoqFather",
+  description: "CoqFather NFT Marketplace",
 };
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";

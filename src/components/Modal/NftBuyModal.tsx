@@ -94,7 +94,7 @@ const NftBuyModal = () => {
               </div>
             </div>
             <p className="w-full text-center text-[14px] mt-[100px]">
-              Are you sure you want to buy <br /> from Pussin Boots for{" "}
+              Are you sure you want to buy <br /> from CoqFathers for{" "}
               {selectedNFT.price} SOL?
             </p>
             <button
