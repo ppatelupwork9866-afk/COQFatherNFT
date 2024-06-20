@@ -175,7 +175,7 @@ const Sider = () => {
                   />
                   {siderWidth > 250 ? (
                     <>
-                      <div className="ml-[7px] mr-[7px] text-[#f345bf]">
+                      <div className="ml-[7px] mr-[7px] text-white">
                         {connStatus
                           ? formatAddress(walletID)
                           : "Connect Wallet"}
