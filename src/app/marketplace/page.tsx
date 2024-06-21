@@ -14,10 +14,10 @@ const Page = () => {
 
   useEffect(() => {
     const xKey = process.env.NEXT_PUBLIC_API_KEY.toString();
-    const endPoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
+    const endPointV2 = process.env.NEXT_PUBLIC_API_V2_ENDPOINT;
     const marketplaceAddress = process.env.NEXT_PUBLIC_MARKETPLACE_ADDRESS;
 
-    const nftUrl = `${endPoint}marketplace/active_listings?network=${network}&marketplace_address=${marketplaceAddress}`;
+    const nftUrl = `${endPointV2}marketplace/active_listings?network=${network}&marketplace_address=${marketplaceAddress}&sort_by=list_date&sort_order=asc`;
 
     axios
       .get(nftUrl, {
@@ -28,8 +28,8 @@ const Page = () => {
       })
       .then((res) => {
         if (res.data.success === true) {
-          setNfts(res.data.result);
-          setActiveNFTs(res.data.result);
+          setNfts(res.data.result.data);
+          setActiveNFTs(res.data.result.data);
         } else {
           setNfts([]);
           toast.info("No NFTs");
