@@ -9,7 +9,7 @@ import { useWallet } from "@/providers/WalletProvider";
 import { toast } from "react-toastify";
 import Spinner from "@/components/notification/message/spinner";
 
-const NFT = ({ params: { id } }) => {
+const NFT = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
   const { nftBuyModal, setNftBuyModal } = useSettingModal();
   const { network } = useWallet();
@@ -25,10 +25,20 @@ const NFT = ({ params: { id } }) => {
     mint: "",
     royalty: 0,
   });
+  const [id, setId] = useState<string>("");
 
   const nftUrl = `${endPoint}nft/read`;
 
   useEffect(() => {
+    // Resolve the params promise
+    params.then((resolvedParams) => {
+      setId(resolvedParams.id);
+    });
+  }, [params]);
+
+  useEffect(() => {
+    if (!id) return;
+    
     axios
       .get(nftUrl, {
         headers: {
@@ -45,7 +55,7 @@ const NFT = ({ params: { id } }) => {
         }
       })
       .catch((err) => toast.error("Something went wrong"));
-  }, [nftUrl]);
+  }, [nftUrl, id, network, xKey]);
 
   return (
     <>

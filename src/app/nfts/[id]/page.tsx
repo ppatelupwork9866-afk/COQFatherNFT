@@ -9,7 +9,7 @@ import { useWallet } from "@/providers/WalletProvider";
 import { toast } from "react-toastify";
 import Spinner from "@/components/notification/message/spinner";
 
-const NFT = ({ params: { id } }) => {
+const NFT = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
   const { nftListModal, nftUnListModal, setNftListModal, setNftUnListModal } = useSettingModal();
   const { network, activeNFTs, setSelectedNFT } = useWallet();
@@ -26,10 +26,20 @@ const NFT = ({ params: { id } }) => {
     royalty: 0,
   });
   const [active, setActive] = useState(false);
+  const [id, setId] = useState<string>("");
 
   const nftUrl = `${endPoint}nft/read`;
 
   useEffect(() => {
+    // Resolve the params promise
+    params.then((resolvedParams) => {
+      setId(resolvedParams.id);
+    });
+  }, [params]);
+
+  useEffect(() => {
+    if (!id) return;
+    
     axios
       .get(nftUrl, {
         headers: {
@@ -55,12 +65,12 @@ const NFT = ({ params: { id } }) => {
       .catch((err) => {
         toast.error("NFT not found");
       });
-  }, [nftUrl]);
+  }, [nftUrl, id, network, xKey, activeNFTs, setSelectedNFT]);
 
   return (
     <>
       <div className="w-full h-full relative overflow-auto">
-        <div className="w-full flex flex-col px-[50px]  overflow-auto absolute h-full">
+        <div className="w-full flex flex-col px-[50px] overflow-auto absolute h-full">
           <div className="w-full flex justify-center">
             <div className="mt-[30px] w-full inline-flex justify-between items-center mb-[30px]">
               <button
@@ -81,7 +91,7 @@ const NFT = ({ params: { id } }) => {
             </div>
           </div>
           <div className="w-full pb-[30px] overflow-auto h-full">
-            <div className="w-full flex flex-col justify-center items-center overflow-auto gridWidth:h-full gap-[30px]">
+            <div className="w-full flex flex-col justify-center items-center overflow-auto gridWidth:h-full gap-[100px]">
               <div className="gridWidth:flex gridWidth:flex-row gridWidth:gap-[40px] overflow-auto">
                 <div className="flex flex-col gap-[30px] w-[380px] flex-none justify-between mb-[50px] gridWidth:mb-0">
                   <div className="w-full flex-1">
@@ -100,7 +110,7 @@ const NFT = ({ params: { id } }) => {
                         className="w-[45px] h-auto rounded-[8px]"
                       />
                       <div className="ml-[20px] text-left">
-                        <p>CoqFather</p>
+                        <p className="py-auto">CoqFather</p>
                       </div>
                     </button>
                   </div>
@@ -149,16 +159,30 @@ const NFT = ({ params: { id } }) => {
                   </div>
                 </div>
               </div>
-              <button
-                className={`w-[130px] h-[45px] rounded-full border border-[#53FAFB] text-[#ffffff] mr-[10px] ${!nftListModal && "hover:bg-[#53FAFB] hover:text-black"
+              <div className="inline-flex gap-[20px]">
+                <button
+                  className={`w-[130px] h-[45px] rounded-full border border-[#53FAFB] text-white mr-[10px] ${
+                    !nftListModal && "hover:bg-[#53FAFB] "
                   } `}
-                onClick={() => {
-                  active ? setNftUnListModal(!nftUnListModal) : setNftListModal(!nftListModal);
-                }}
-                disabled={nftListModal || nftUnListModal}
-              >
-                {nftListModal || nftUnListModal ? <Spinner /> : active ? "Unlist" : "List"}
-              </button>
+                  onClick={() => {
+                    setNftListModal(!nftListModal);
+                  }}
+                  disabled={nftListModal}
+                >
+                  {nftListModal ? <Spinner /> : "List"}
+                </button>
+                <button
+                  className={`w-[130px] h-[45px] rounded-full border border-[#53FAFB] text-white mr-[10px] ${
+                    !nftUnListModal && "hover:bg-[#53FAFB] "
+                  } `}
+                  onClick={() => {
+                    setNftUnListModal(!nftUnListModal);
+                  }}
+                  disabled={nftUnListModal}
+                >
+                  {nftUnListModal ? <Spinner /> : "Unlist"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
