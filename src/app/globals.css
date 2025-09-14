@@ -9,14 +9,12 @@
 }
 :root {
   --homemain-height: calc(100vh - 100px);
-  
 }
 
 ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
 }
-
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -115,6 +113,14 @@ body {
   font-family: Abeezee_Regular;
   src: url("/font/abeezee/ABeeZee-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Corleone";
+  src: url("/fonts/Corleone-Due-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .tooltip {
   @apply invisible absolute;
 }
@@ -127,4 +133,8 @@ body {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+ul.force-corleone li {
+  font-family: "Corleone", sans-serif !important;
 }

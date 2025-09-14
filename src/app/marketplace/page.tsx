@@ -6,7 +6,69 @@ import { useWallet } from "@/providers/WalletProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+import Recommend from "@/components/home/Recommand";
+import LastCommunity from "@/components/home/LastCommunity";
+import Slider from "@/components/home/Slider";
+
 const NewNFTS = dynamic(() => import("@/components/marketplace/NewNFTs"));
+const staticNFTs = [
+  {
+    nft: {
+      name: "Capo Pepe",
+      cached_image_uri: "/StaticNFTs/Capo_Pepe.png",
+    },
+    price: "0.5",
+    nft_address: "static1",
+  },
+  {
+    nft: {
+      name: "Degenstein",
+      cached_image_uri: "/StaticNFTs/Degenstein.png",
+    },
+    price: "0.8",
+    nft_address: "static2",
+  },
+  {
+    nft: {
+      name: "Lil Coqie",
+      cached_image_uri: "/StaticNFTs/Lil_Coqie.png",
+    },
+    price: "0.5",
+    nft_address: "static3",
+  },
+  {
+    nft: {
+      name: "Miss Rugpullina",
+      cached_image_uri: "/StaticNFTs/Miss_Rugpullina.png",
+    },
+    price: "0.8",
+    nft_address: "static4",
+  },
+  {
+    nft: {
+      name: "Silencio the Shiba",
+      cached_image_uri: "/StaticNFTs/Silencio_the_Shiba.png",
+    },
+    price: "0.5",
+    nft_address: "static5",
+  },
+  {
+    nft: {
+      name: "The Coqfather(Don Roosterino)",
+      cached_image_uri: "/StaticNFTs/TheCoqfather(Don_Roosterino).png",
+    },
+    price: "0.8",
+    nft_address: "static6",
+  },
+  {
+    nft: {
+      name: "Wojak the Whacked",
+      cached_image_uri: "/StaticNFTs/Wojak_the_Whacked.png",
+    },
+    price: "0.8",
+    nft_address: "static6",
+  },
+];
 const Page = () => {
   const { network, walletID, setActiveNFTs } = useWallet();
 
@@ -47,7 +109,14 @@ const Page = () => {
       <div className="w-full h-full  mobile:px-[50px] px-[20px] pt-[30px] pb-[50px] overflow-auto prevent-select">
         <div className="w-full h-full relative overflow-auto flex flex-col gap-[20px]">
           <p className="text-[25px]">Explore NFTs</p>
-          <div className="w-full h-full mt-[20px] relative overflow-auto">
+          <div className="w-full overflow-auto grid grid-cols-4 gap-[30px]">
+            {staticNFTs.map((item, index) => (
+              <div key={index}>
+                <NewNFTS item={item} />
+              </div>
+            ))}
+          </div>
+          {/* <div className="w-full h-full mt-[20px] relative overflow-auto">
             {nfts.length > 0 ? (
               <div className="w-full overflow-auto grid grid-cols-4 gap-[30px] absolute">
                 {nfts.map((item, index) => (
@@ -61,7 +130,7 @@ const Page = () => {
                 No NFTs
               </p>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </>

@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       transitionProperty: {
-        width: "width"
+        width: "width",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -17,22 +17,23 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       backgroundOpacity: {
-        '50': '0.5',
+        "50": "0.5",
       },
       fontFamily: {
-        sans: ["var(--font-poppins)"],
+        corleone: ["Corleone", "sans-serif"],
+        sans: ["var(--font-open-sans)", "sans-serif"],
         metana: "Metana",
         ttfirs: "TTFirs",
         ttfirsBold: "TTFirsBold",
         metanaBold: "MetanaBold",
         abeezeeItalic: "Abeezee_Italic",
-        abeezeeRegular: "Abeezee_Regular"
+        abeezeeRegular: "Abeezee_Regular",
       },
       screens: {
-        desktop: '1000px',
-        mobile: '700px',
-        gridWidth: '870px',
-        modalWidth: "1400px"
+        desktop: "1000px",
+        mobile: "700px",
+        gridWidth: "870px",
+        modalWidth: "1400px",
       },
     },
   },
