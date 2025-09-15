@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
+import Link from "next/link";
 import SiderList from "../../Sider/sider";
 
 import { useWallet } from "@/providers/WalletProvider";
@@ -51,17 +51,20 @@ const NFTHeader = () => {
               display: "inline-block", // keeps image+text together
             }}
           >
-            <Image
-              style={{
-                height: "200px",
-                width: "250px",
-              }}
-              src="/home/COQ.png"
-              width={300}
-              height={0}
-              className="-mt-[4.25rem]"
-              alt="title"
-            />
+            <Link href=" https://thecoqfather.com/" target="_blank">
+              <Image
+                style={{
+                  height: "200px",
+                  width: "250px",
+                }}
+                // src="/home/COQDOAM.jpg"
+                src="/home/COQ.png"
+                width={300}
+                height={0}
+                className="-mt-[4.25rem]"
+                alt="title"
+              />
+            </Link>
 
             <div
               style={{
