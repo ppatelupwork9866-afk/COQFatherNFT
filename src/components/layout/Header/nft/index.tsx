@@ -31,7 +31,7 @@ const NFTHeader = () => {
 
   return (
     <div className="w-full flex items-center justify-between">
-      <div className="flex items-center" style={{ gap: "3rem" }}>
+      <div className="flex items-center" style={{ gap: "1rem" }}>
         {loading && (
           <div className="w-full aspect-square  rounded-[10px]"></div>
         )}
@@ -45,43 +45,42 @@ const NFTHeader = () => {
           onLoad={() => setLoading(false)}
         />
         {siderWidth > 500 && (
-          <div
-            style={{
-              position: "relative", // allow absolute positioning inside
-              display: "inline-block", // keeps image+text together
-            }}
-          >
-            <Link href=" https://thecoqfather.com/" target="_blank">
-              <Image
-                style={{
-                  height: "200px",
-                  width: "250px",
-                }}
-                // src="/home/COQDOAM.jpg"
-                src="/home/COQ.png"
-                width={300}
-                height={0}
-                className="-mt-[4.25rem]"
-                alt="title"
-              />
-            </Link>
-
-            <div
+          // <div
+          //   style={{
+          //     position: "relative",
+          //     display: "inline-block",
+          //   }}
+          // >
+          <Link href=" https://thecoqfather.com/" target="_blank">
+            <Image
               style={{
-                position: "absolute",
-                bottom: "34px", // push near bottom
-                left: "-34px", // push near left
-                fontWeight: "bold",
-                fontSize: "16px",
-                color: "white",
-                background: "rgba(0,0,0,0.5)",
-                padding: "2px 6px",
-                borderRadius: "4px",
+                height: "200px",
+                width: "230px",
               }}
-            >
-              (FOAM)
-            </div>
-          </div>
+              src="/home/COQFOAM.png"
+              width={300}
+              height={0}
+              className="-mt-[4.25rem]"
+              alt="title"
+            />
+          </Link>
+
+          // <div
+          //   style={{
+          //     position: "absolute",
+          //     bottom: "34px", // push near bottom
+          //     left: "-34px", // push near left
+          //     fontWeight: "bold",
+          //     fontSize: "16px",
+          //     color: "white",
+          //     background: "rgba(0,0,0,0.5)",
+          //     padding: "2px 6px",
+          //     borderRadius: "4px",
+          //   }}
+          // >
+          //   (FOAM)
+          // </div>
+          // </div>
         )}
       </div>
 
